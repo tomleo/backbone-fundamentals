@@ -6,10 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Developing Backbone.js Applications - </title>
   <style type="text/css">code{white-space: pre;}</style>
-  <!--[if lt IE 9]>
-    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-  <style type="text/css">
+    <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
 table.sourceCode { width: 100%; line-height: 100%; }
@@ -31,263 +28,259 @@ code > span.er { color: #ff0000; font-weight: bold; }
   <link rel="stylesheet" href="style.css">
   <meta name="viewport" content="width=device-width">
 </head>
+
 <body>
-<p>
-	<h1>Developing Backbone.js Applications</h1>
-	<h3>By Addy Osmani (<a href="https://twitter.com/addyosmani">@addyosmani</a>)</h3>
-</p>
-<div style="width:500px">
+<header>
+    <p>
+        <h1>Developing Backbone.js Applications</h1>
+        <h3>By Addy Osmani (<a href="https://twitter.com/addyosmani">@addyosmani</a>)</h3>
+    </p>
+</header>
 
-<iframe src="http://ghbtns.com/github-btn.html?user=addyosmani&repo=backbone-fundamentals&type=watch&count=true"
-  allowtransparency="true" frameborder="0" scrolling="0" width="110px" height="20px"></iframe>
 
- <iframe allowtransparency="true" frameborder="0" scrolling="no" src="http://platform.twitter.com/widgets/tweet_button.1333103182.html#_=1333404284780&amp;count=horizontal&amp;id=twitter-widget-0&amp;lang=en&amp;original_referer=http%3A%2F%2Faddyosmani.github.com%2Fbackbone-fundamentals%2F&amp;size=m&amp;text=Developing%20Backbone.js%20Applications&amp;url=https%3A%2F%2Fgithub.com%2Faddyosmani%2Fbackbone-fundamentals&amp;via=addyosmani" class="twitter-share-button twitter-count-horizontal" style="width: 107px; height: 20px; " title="Twitter Tweet Button"></iframe>
-<script id="twitter-wjs" src="//platform.twitter.com/widgets.js"></script><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div>
 
-  <p>&nbsp;<br></p>
-</div>
-
-<p>Available free for open-source reading below or for purchase via the <a href="http://shop.oreilly.com/product/0636920025344.do">O'Reilly store</a>. <a href="https://github.com/addyosmani/backbone-fundamentals/"></br>Pull requests</a> and comments always welcome.</p>
-<p><img src="img/oreilly.jpg"/></p>
-
-<a href="http://shop.oreilly.com/product/0636920025344/ReviewSubmit.do?sortby=publicationDate?pageId=0636920025344.IP"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://addyosmani.github.com/backbone-fundamentals/img/helpful.png" alt="Was this helpful? We'd love you to write a review."></a>
-<nav id="TOC">
-<ul>
-<li><a href="#prelude">Prelude</a></li>
-<li><a href="#target-audience">Target Audience</a></li>
-<li><a href="#acknowledgements">Acknowledgements</a></li>
-<li><a href="#credits">Credits</a></li>
-<li><a href="#target-version">Target Version</a></li>
-<li><a href="#reading">Reading</a></li>
-<li><a href="#introduction">Introduction</a><ul>
-<li><a href="#what-is-mvc">What Is MVC?</a></li>
-<li><a href="#what-is-backbone.js">What is Backbone.js?</a></li>
-<li><a href="#when-do-i-need-a-javascript-mvc-framework">When Do I Need A JavaScript MVC Framework?</a></li>
-<li><a href="#why-consider-backbone.js">Why Consider Backbone.js?</a></li>
-<li><a href="#setting-expectations">Setting Expectations</a></li>
-</ul></li>
-<li><a href="#fundamentals">Fundamentals</a><ul>
-<li><a href="#mvc">MVC</a><ul>
-<li><a href="#smalltalk-80-mvc">Smalltalk-80 MVC</a></li>
-<li><a href="#mvc-applied-to-the-web">MVC Applied To The Web</a></li>
-<li><a href="#client-side-mvc-single-page-apps">Client-Side MVC &amp; Single Page Apps</a></li>
-<li><a href="#client-side-mvc---backbone-style">Client-Side MVC - Backbone Style</a></li>
-<li><a href="#implementation-specifics">Implementation Specifics</a></li>
-</ul></li>
-<li><a href="#what-does-mvc-give-us">What does MVC give us?</a><ul>
-<li><a href="#delving-deeper-into-mvc">Delving Deeper into MVC</a></li>
-<li><a href="#summary">Summary</a></li>
-<li><a href="#further-reading">Further reading</a></li>
-</ul></li>
-<li><a href="#fast-facts">Fast facts</a><ul>
-<li><a href="#backbone.js">Backbone.js</a></li>
-<li><a href="#used-by">Used by</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#backbone-basics">Backbone Basics</a><ul>
-<li><a href="#getting-set-up">Getting set up</a></li>
-<li><a href="#models-1">Models</a></li>
-<li><a href="#views-1">Views</a></li>
-<li><a href="#collections">Collections</a></li>
-<li><a href="#restful-persistence">RESTful Persistence</a></li>
-<li><a href="#events">Events</a></li>
-<li><a href="#routers">Routers</a></li>
-<li><a href="#backbones-sync-api">Backbone’s Sync API</a></li>
-<li><a href="#dependencies">Dependencies</a></li>
-<li><a href="#summary-1">Summary</a></li>
-</ul></li>
-<li><a href="#exercise-1-todos---your-first-backbone.js-app">Exercise 1: Todos - Your First Backbone.js App</a><ul>
-<li><a href="#static-html">Static HTML</a></li>
-<li><a href="#todo-model">Todo model</a></li>
-<li><a href="#todo-collection">Todo collection</a></li>
-<li><a href="#application-view">Application View</a></li>
-<li><a href="#individual-todo-view">Individual Todo View</a></li>
-<li><a href="#startup">Startup</a></li>
-<li><a href="#in-action">In action</a></li>
-<li><a href="#completing-deleting-todos">Completing &amp; deleting todos</a></li>
-<li><a href="#todo-routing">Todo routing</a></li>
-<li><a href="#summary-2">Summary</a></li>
-</ul></li>
-<li><a href="#exercise-2-book-library---your-first-restful-backbone.js-app">Exercise 2: Book Library - Your First RESTful Backbone.js App</a><ul>
-<li><a href="#setting-up">Setting up</a></li>
-<li><a href="#wiring-in-the-interface">Wiring in the interface</a><ul>
-<li><a href="#adding-models">Adding models</a></li>
-<li><a href="#removing-models">Removing models</a></li>
-</ul></li>
-<li><a href="#creating-the-back-end">Creating the back-end</a><ul>
-<li><a href="#install-node.js-npm-and-mongodb">Install node.js, npm, and MongoDB</a></li>
-<li><a href="#install-node-modules">Install node modules</a></li>
-<li><a href="#create-a-simple-web-server">Create a simple web server</a></li>
-<li><a href="#connect-to-the-database">Connect to the database</a></li>
-</ul></li>
-<li><a href="#talking-to-the-server">Talking to the server</a><ul>
-<li><a href="#summary-3">Summary</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#backbone-extensions">Backbone Extensions</a><ul>
-<li><a href="#marionettejs-backbone.marionette">MarionetteJS (Backbone.Marionette)</a><ul>
-<li><a href="#boilerplate-rendering-code">Boilerplate Rendering Code</a></li>
-<li><a href="#reducing-boilerplate-with-marionette.itemview">Reducing Boilerplate With Marionette.ItemView</a></li>
-<li><a href="#memory-management">Memory Management</a></li>
-<li><a href="#region-management">Region Management</a></li>
-<li><a href="#marionette-todo-app">Marionette Todo app</a></li>
-<li><a href="#is-the-marionette-implementation-of-the-todo-app-more-maintainable">Is the Marionette implementation of the Todo app more maintainable?</a></li>
-<li><a href="#marionette-and-flexibility">Marionette And Flexibility</a></li>
-<li><a href="#and-so-much-more">And So Much More</a></li>
-</ul></li>
-<li><a href="#thorax">Thorax</a><ul>
-<li><a href="#hello-world">Hello World</a></li>
-<li><a href="#embedding-child-views">Embedding child views</a></li>
-<li><a href="#view-helpers">View helpers</a></li>
-<li><a href="#collection-helper">collection helper</a></li>
-<li><a href="#custom-html-data-attributes">Custom HTML data attributes</a></li>
-<li><a href="#thorax-resources">Thorax Resources</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#common-problems-solutions">Common Problems &amp; Solutions</a></li>
-<li><a href="#modular-development">Modular Development</a><ul>
-<li><a href="#introduction-1">Introduction</a></li>
-<li><a href="#organizing-modules-with-requirejs-and-amd">Organizing modules with RequireJS and AMD</a><ul>
-<li><a href="#maintainability-problems-with-multiple-script-files">Maintainability problems with multiple script files</a></li>
-<li><a href="#need-for-better-dependency-management">Need for better dependency management</a></li>
-<li><a href="#asynchronous-module-definition-amd">Asynchronous Module Definition (AMD)</a></li>
-<li><a href="#writing-amd-modules-with-requirejs">Writing AMD modules with RequireJS</a></li>
-<li><a href="#getting-started-with-requirejs">Getting Started with RequireJS</a></li>
-<li><a href="#require.js-and-backbone-examples">Require.js and Backbone Examples</a></li>
-<li><a href="#keeping-your-templates-external-using-requirejs-and-the-text-plugin">Keeping Your Templates External Using RequireJS And The Text Plugin</a></li>
-<li><a href="#optimizing-backbone-apps-for-production-with-the-requirejs-optimizer">Optimizing Backbone apps for production with the RequireJS Optimizer</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#exercise-3-your-first-modular-backbone-requirejs-app">Exercise 3: Your First Modular Backbone + RequireJS App</a><ul>
-<li><a href="#overview">Overview</a></li>
-<li><a href="#markup">Markup</a></li>
-<li><a href="#configuration-options">Configuration options</a></li>
-<li><a href="#modularizing-our-models-views-and-collections">Modularizing our models, views and collections</a></li>
-<li><a href="#route-based-module-loading">Route-based module loading</a><ul>
-<li><a href="#json-based-module-configuration">JSON-based module configuration</a></li>
-<li><a href="#module-loader-router">Module loader Router</a></li>
-<li><a href="#using-nodejs-to-handle-pushstate">Using NodeJS to handle pushState</a></li>
-</ul></li>
-<li><a href="#an-asset-package-alternative-for-dependency-management">An asset package alternative for dependency management</a></li>
-</ul></li>
-<li><a href="#paginating-backbone.js-requests-collections">Paginating Backbone.js Requests &amp; Collections</a><ul>
-<li><a href="#introduction-2">Introduction</a><ul>
-<li><a href="#backbone.paginator">Backbone.Paginator</a></li>
-<li><a href="#live-examples">Live Examples</a></li>
-</ul></li>
-<li><a href="#paginator.requestpager">Paginator.requestPager</a></li>
-<li><a href="#gotchas">Gotchas!</a></li>
-<li><a href="#gotchas-1">Gotchas!</a></li>
-<li><a href="#paginator.clientpager">Paginator.clientPager</a><ul>
-<li><a href="#plugins">Plugins</a></li>
-<li><a href="#bootstrapping">Bootstrapping</a></li>
-<li><a href="#styling">Styling</a></li>
-<li><a href="#conclusions">Conclusions</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#backbone-boilerplate-and-grunt-bbb">Backbone Boilerplate And Grunt-BBB</a><ul>
-<li><a href="#getting-started">Getting Started</a><ul>
-<li><a href="#backbone-boilerplate-and-grunt-bbb-1">Backbone Boilerplate and Grunt-BBB</a></li>
-</ul></li>
-<li><a href="#creating-a-new-project">Creating a new project</a><ul>
-<li><a href="#index.html">index.html</a></li>
-<li><a href="#config.js">config.js</a></li>
-<li><a href="#main.js">main.js</a></li>
-<li><a href="#app.js">app.js</a></li>
-<li><a href="#creating-backbone-boilerplate-modules">Creating Backbone Boilerplate Modules</a></li>
-<li><a href="#router.js">router.js</a></li>
-</ul></li>
-<li><a href="#other-useful-tools-projects">Other Useful Tools &amp; Projects</a><ul>
-<li><a href="#yeoman">Yeoman</a></li>
-<li><a href="#backbone-devtools">Backbone DevTools</a></li>
-</ul></li>
-<li><a href="#conclusions-1">Conclusions</a></li>
-</ul></li>
-<li><a href="#backbone-jquery-mobile">Backbone &amp; jQuery Mobile</a><ul>
-<li><a href="#mobile-app-development-with-jquery-mobile">Mobile app development with jQuery Mobile</a></li>
-<li><a href="#basic-backbone-app-setup-for-jquery-mobile">Basic Backbone app setup for jQuery Mobile</a></li>
-<li><a href="#workflow-with-backbone-and-jquerymobile">Workflow with Backbone and jQueryMobile</a></li>
-<li><a href="#applying-advanced-jqm-techniques-to-backbone">Applying advanced jQM techniques to Backbone</a></li>
-</ul></li>
-<li><a href="#unit-testing">Unit Testing</a></li>
-<li><a href="#jasmine">Jasmine</a><ul>
-<li><a href="#behavior-driven-development">Behavior-Driven Development</a></li>
-<li><a href="#suites-specs-spies">Suites, Specs, &amp; Spies</a></li>
-<li><a href="#beforeeach-and-aftereach">beforeEach() and afterEach()</a></li>
-<li><a href="#shared-scope">Shared scope</a></li>
-<li><a href="#getting-set-up-1">Getting set up</a></li>
-<li><a href="#tdd-with-backbone">TDD With Backbone</a></li>
-<li><a href="#models-2">Models</a></li>
-<li><a href="#collections-1">Collections</a></li>
-<li><a href="#views-2">Views</a><ul>
-<li><a href="#view-testing">View testing</a></li>
-</ul></li>
-<li><a href="#conclusions-2">Conclusions</a></li>
-<li><a href="#exercise">Exercise</a></li>
-<li><a href="#further-reading-1">Further reading</a></li>
-</ul></li>
-<li><a href="#qunit">QUnit</a><ul>
-<li><a href="#introduction-3">Introduction</a></li>
-<li><a href="#getting-setup">Getting Setup</a></li>
-<li><a href="#assertions">Assertions</a></li>
-<li><a href="#adding-structure-to-assertions">Adding structure to assertions</a></li>
-<li><a href="#assertion-examples">Assertion examples</a><ul>
-<li><a href="#equal---a-comparison-assertion.-it-passes-if-actual-expected">equal - a comparison assertion. It passes if actual == expected</a></li>
-<li><a href="#notequal---a-comparison-assertion.-it-passes-if-actual-expected">notEqual - a comparison assertion. It passes if actual != expected</a></li>
-<li><a href="#strictequal---a-comparison-assertion.-it-passes-if-actual-expected">strictEqual - a comparison assertion. It passes if actual === expected</a></li>
-<li><a href="#notstrictequal---a-comparison-assertion.-it-passes-if-actual-expected">notStrictEqual - a comparison assertion. It passes if actual !== expected</a></li>
-<li><a href="#deepequal---a-recursive-comparison-assertion.-unlike-strictequal-it-works-on-objects-arrays-and-primitives.">deepEqual - a recursive comparison assertion. Unlike strictEqual(), it works on objects, arrays and primitives.</a></li>
-<li><a href="#notdeepequal---a-comparison-assertion.-this-returns-the-opposite-of-deepequal">notDeepEqual - a comparison assertion. This returns the opposite of deepEqual</a></li>
-<li><a href="#raises---an-assertion-which-tests-if-a-callback-throws-any-exceptions">raises - an assertion which tests if a callback throws any exceptions</a></li>
-</ul></li>
-<li><a href="#fixtures">Fixtures</a><ul>
-<li><a href="#fixtures-example">Fixtures example:</a></li>
-</ul></li>
-<li><a href="#asynchronous-code">Asynchronous code</a></li>
-</ul></li>
-<li><a href="#sinonjs">SinonJS</a><ul>
-<li><a href="#what-is-sinonjs">What is SinonJS?</a></li>
-<li><a href="#stubs-and-mocks">Stubs and mocks</a><ul>
-<li><a href="#stubs">Stubs</a></li>
-<li><a href="#mocks">Mocks</a></li>
-</ul></li>
-<li><a href="#exercise-1">Exercise</a><ul>
-<li><a href="#models-3">Models</a></li>
-<li><a href="#collections-2">Collections</a></li>
-<li><a href="#views-3">Views</a></li>
-<li><a href="#app">App</a></li>
-</ul></li>
-<li><a href="#further-reading-resources">Further Reading &amp; Resources</a></li>
-</ul></li>
-<li><a href="#resources">Resources</a><ul>
-<li><a href="#books-courses">Books &amp; Courses</a></li>
-<li><a href="#extensionslibraries">Extensions/Libraries</a></li>
-</ul></li>
-<li><a href="#conclusions-3">Conclusions</a></li>
-<li><a href="#appendix">Appendix</a><ul>
-<li><a href="#a-simple-javascript-mvc-implementation">A Simple JavaScript MVC Implementation</a><ul>
-<li><a href="#event-system">Event System</a></li>
-<li><a href="#models-4">Models</a></li>
-<li><a href="#views-4">Views</a></li>
-<li><a href="#controllers-2">Controllers</a></li>
-<li><a href="#practical-usage">Practical Usage</a></li>
-</ul></li>
-<li><a href="#mvp">MVP</a><ul>
-<li><a href="#models-views-presenters">Models, Views &amp; Presenters</a></li>
-</ul></li>
-<li><a href="#mvp-or-mvc">MVP or MVC?</a></li>
-<li><a href="#mvc-mvp-and-backbone.js">MVC, MVP and Backbone.js</a></li>
-<li><a href="#namespacing">Namespacing</a></li>
-<li><a href="#backbone-dependency-details">Backbone Dependency Details</a><ul>
-<li><a href="#dom-manipulation">DOM Manipulation</a></li>
-<li><a href="#utilities">Utilities</a></li>
-<li><a href="#restful-persistence-1">RESTful persistence</a></li>
-<li><a href="#routing">Routing</a></li>
-</ul></li>
-<li><a href="#backbone-vs.-other-libraries-and-frameworks">Backbone Vs. Other Libraries And Frameworks</a></li>
-</ul></li>
-</ul>
+<div class="col1">
+    <nav id="TOC">
+    <ul>
+    <li><a href="#prelude">Prelude</a></li>
+    <li><a href="#target-audience">Target Audience</a></li>
+    <li><a href="#acknowledgements">Acknowledgements</a></li>
+    <li><a href="#credits">Credits</a></li>
+    <li><a href="#target-version">Target Version</a></li>
+    <li><a href="#reading">Reading</a></li>
+    <li><a href="#introduction">Introduction</a><ul>
+    <li><a href="#what-is-mvc">What Is MVC?</a></li>
+    <li><a href="#what-is-backbone.js">What is Backbone.js?</a></li>
+    <li><a href="#when-do-i-need-a-javascript-mvc-framework">When Do I Need A JavaScript MVC Framework?</a></li>
+    <li><a href="#why-consider-backbone.js">Why Consider Backbone.js?</a></li>
+    <li><a href="#setting-expectations">Setting Expectations</a></li>
+    </ul></li>
+    <li><a href="#fundamentals">Fundamentals</a><ul>
+    <li><a href="#mvc">MVC</a><ul>
+    <li><a href="#smalltalk-80-mvc">Smalltalk-80 MVC</a></li>
+    <li><a href="#mvc-applied-to-the-web">MVC Applied To The Web</a></li>
+    <li><a href="#client-side-mvc-single-page-apps">Client-Side MVC &amp; Single Page Apps</a></li>
+    <li><a href="#client-side-mvc---backbone-style">Client-Side MVC - Backbone Style</a></li>
+    <li><a href="#implementation-specifics">Implementation Specifics</a></li>
+    </ul></li>
+    <li><a href="#what-does-mvc-give-us">What does MVC give us?</a><ul>
+    <li><a href="#delving-deeper-into-mvc">Delving Deeper into MVC</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#further-reading">Further reading</a></li>
+    </ul></li>
+    <li><a href="#fast-facts">Fast facts</a><ul>
+    <li><a href="#backbone.js">Backbone.js</a></li>
+    <li><a href="#used-by">Used by</a></li>
+    </ul></li>
+    </ul></li>
+    <li><a href="#backbone-basics">Backbone Basics</a><ul>
+    <li><a href="#getting-set-up">Getting set up</a></li>
+    <li><a href="#models-1">Models</a></li>
+    <li><a href="#views-1">Views</a></li>
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#restful-persistence">RESTful Persistence</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#routers">Routers</a></li>
+    <li><a href="#backbones-sync-api">Backbone’s Sync API</a></li>
+    <li><a href="#dependencies">Dependencies</a></li>
+    <li><a href="#summary-1">Summary</a></li>
+    </ul></li>
+    <li><a href="#exercise-1-todos---your-first-backbone.js-app">Exercise 1: Todos - Your First Backbone.js App</a><ul>
+    <li><a href="#static-html">Static HTML</a></li>
+    <li><a href="#todo-model">Todo model</a></li>
+    <li><a href="#todo-collection">Todo collection</a></li>
+    <li><a href="#application-view">Application View</a></li>
+    <li><a href="#individual-todo-view">Individual Todo View</a></li>
+    <li><a href="#startup">Startup</a></li>
+    <li><a href="#in-action">In action</a></li>
+    <li><a href="#completing-deleting-todos">Completing &amp; deleting todos</a></li>
+    <li><a href="#todo-routing">Todo routing</a></li>
+    <li><a href="#summary-2">Summary</a></li>
+    </ul></li>
+    <li><a href="#exercise-2-book-library---your-first-restful-backbone.js-app">Exercise 2: Book Library - Your First RESTful Backbone.js App</a><ul>
+    <li><a href="#setting-up">Setting up</a></li>
+    <li><a href="#wiring-in-the-interface">Wiring in the interface</a><ul>
+    <li><a href="#adding-models">Adding models</a></li>
+    <li><a href="#removing-models">Removing models</a></li>
+    </ul></li>
+    <li><a href="#creating-the-back-end">Creating the back-end</a><ul>
+    <li><a href="#install-node.js-npm-and-mongodb">Install node.js, npm, and MongoDB</a></li>
+    <li><a href="#install-node-modules">Install node modules</a></li>
+    <li><a href="#create-a-simple-web-server">Create a simple web server</a></li>
+    <li><a href="#connect-to-the-database">Connect to the database</a></li>
+    </ul></li>
+    <li><a href="#talking-to-the-server">Talking to the server</a><ul>
+    <li><a href="#summary-3">Summary</a></li>
+    </ul></li>
+    </ul></li>
+    <li><a href="#backbone-extensions">Backbone Extensions</a><ul>
+    <li><a href="#marionettejs-backbone.marionette">MarionetteJS (Backbone.Marionette)</a><ul>
+    <li><a href="#boilerplate-rendering-code">Boilerplate Rendering Code</a></li>
+    <li><a href="#reducing-boilerplate-with-marionette.itemview">Reducing Boilerplate With Marionette.ItemView</a></li>
+    <li><a href="#memory-management">Memory Management</a></li>
+    <li><a href="#region-management">Region Management</a></li>
+    <li><a href="#marionette-todo-app">Marionette Todo app</a></li>
+    <li><a href="#is-the-marionette-implementation-of-the-todo-app-more-maintainable">Is the Marionette implementation of the Todo app more maintainable?</a></li>
+    <li><a href="#marionette-and-flexibility">Marionette And Flexibility</a></li>
+    <li><a href="#and-so-much-more">And So Much More</a></li>
+    </ul></li>
+    <li><a href="#thorax">Thorax</a><ul>
+    <li><a href="#hello-world">Hello World</a></li>
+    <li><a href="#embedding-child-views">Embedding child views</a></li>
+    <li><a href="#view-helpers">View helpers</a></li>
+    <li><a href="#collection-helper">collection helper</a></li>
+    <li><a href="#custom-html-data-attributes">Custom HTML data attributes</a></li>
+    <li><a href="#thorax-resources">Thorax Resources</a></li>
+    </ul></li>
+    </ul></li>
+    <li><a href="#common-problems-solutions">Common Problems &amp; Solutions</a></li>
+    <li><a href="#modular-development">Modular Development</a><ul>
+    <li><a href="#introduction-1">Introduction</a></li>
+    <li><a href="#organizing-modules-with-requirejs-and-amd">Organizing modules with RequireJS and AMD</a><ul>
+    <li><a href="#maintainability-problems-with-multiple-script-files">Maintainability problems with multiple script files</a></li>
+    <li><a href="#need-for-better-dependency-management">Need for better dependency management</a></li>
+    <li><a href="#asynchronous-module-definition-amd">Asynchronous Module Definition (AMD)</a></li>
+    <li><a href="#writing-amd-modules-with-requirejs">Writing AMD modules with RequireJS</a></li>
+    <li><a href="#getting-started-with-requirejs">Getting Started with RequireJS</a></li>
+    <li><a href="#require.js-and-backbone-examples">Require.js and Backbone Examples</a></li>
+    <li><a href="#keeping-your-templates-external-using-requirejs-and-the-text-plugin">Keeping Your Templates External Using RequireJS And The Text Plugin</a></li>
+    <li><a href="#optimizing-backbone-apps-for-production-with-the-requirejs-optimizer">Optimizing Backbone apps for production with the RequireJS Optimizer</a></li>
+    </ul></li>
+    </ul></li>
+    <li><a href="#exercise-3-your-first-modular-backbone-requirejs-app">Exercise 3: Your First Modular Backbone + RequireJS App</a><ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#markup">Markup</a></li>
+    <li><a href="#configuration-options">Configuration options</a></li>
+    <li><a href="#modularizing-our-models-views-and-collections">Modularizing our models, views and collections</a></li>
+    <li><a href="#route-based-module-loading">Route-based module loading</a><ul>
+    <li><a href="#json-based-module-configuration">JSON-based module configuration</a></li>
+    <li><a href="#module-loader-router">Module loader Router</a></li>
+    <li><a href="#using-nodejs-to-handle-pushstate">Using NodeJS to handle pushState</a></li>
+    </ul></li>
+    <li><a href="#an-asset-package-alternative-for-dependency-management">An asset package alternative for dependency management</a></li>
+    </ul></li>
+    <li><a href="#paginating-backbone.js-requests-collections">Paginating Backbone.js Requests &amp; Collections</a><ul>
+    <li><a href="#introduction-2">Introduction</a><ul>
+    <li><a href="#backbone.paginator">Backbone.Paginator</a></li>
+    <li><a href="#live-examples">Live Examples</a></li>
+    </ul></li>
+    <li><a href="#paginator.requestpager">Paginator.requestPager</a></li>
+    <li><a href="#gotchas">Gotchas!</a></li>
+    <li><a href="#gotchas-1">Gotchas!</a></li>
+    <li><a href="#paginator.clientpager">Paginator.clientPager</a><ul>
+    <li><a href="#plugins">Plugins</a></li>
+    <li><a href="#bootstrapping">Bootstrapping</a></li>
+    <li><a href="#styling">Styling</a></li>
+    <li><a href="#conclusions">Conclusions</a></li>
+    </ul></li>
+    </ul></li>
+    <li><a href="#backbone-boilerplate-and-grunt-bbb">Backbone Boilerplate And Grunt-BBB</a><ul>
+    <li><a href="#getting-started">Getting Started</a><ul>
+    <li><a href="#backbone-boilerplate-and-grunt-bbb-1">Backbone Boilerplate and Grunt-BBB</a></li>
+    </ul></li>
+    <li><a href="#creating-a-new-project">Creating a new project</a><ul>
+    <li><a href="#index.html">index.html</a></li>
+    <li><a href="#config.js">config.js</a></li>
+    <li><a href="#main.js">main.js</a></li>
+    <li><a href="#app.js">app.js</a></li>
+    <li><a href="#creating-backbone-boilerplate-modules">Creating Backbone Boilerplate Modules</a></li>
+    <li><a href="#router.js">router.js</a></li>
+    </ul></li>
+    <li><a href="#other-useful-tools-projects">Other Useful Tools &amp; Projects</a><ul>
+    <li><a href="#yeoman">Yeoman</a></li>
+    <li><a href="#backbone-devtools">Backbone DevTools</a></li>
+    </ul></li>
+    <li><a href="#conclusions-1">Conclusions</a></li>
+    </ul></li>
+    <li><a href="#backbone-jquery-mobile">Backbone &amp; jQuery Mobile</a><ul>
+    <li><a href="#mobile-app-development-with-jquery-mobile">Mobile app development with jQuery Mobile</a></li>
+    <li><a href="#basic-backbone-app-setup-for-jquery-mobile">Basic Backbone app setup for jQuery Mobile</a></li>
+    <li><a href="#workflow-with-backbone-and-jquerymobile">Workflow with Backbone and jQueryMobile</a></li>
+    <li><a href="#applying-advanced-jqm-techniques-to-backbone">Applying advanced jQM techniques to Backbone</a></li>
+    </ul></li>
+    <li><a href="#unit-testing">Unit Testing</a></li>
+    <li><a href="#jasmine">Jasmine</a><ul>
+    <li><a href="#behavior-driven-development">Behavior-Driven Development</a></li>
+    <li><a href="#suites-specs-spies">Suites, Specs, &amp; Spies</a></li>
+    <li><a href="#beforeeach-and-aftereach">beforeEach() and afterEach()</a></li>
+    <li><a href="#shared-scope">Shared scope</a></li>
+    <li><a href="#getting-set-up-1">Getting set up</a></li>
+    <li><a href="#tdd-with-backbone">TDD With Backbone</a></li>
+    <li><a href="#models-2">Models</a></li>
+    <li><a href="#collections-1">Collections</a></li>
+    <li><a href="#views-2">Views</a><ul>
+    <li><a href="#view-testing">View testing</a></li>
+    </ul></li>
+    <li><a href="#conclusions-2">Conclusions</a></li>
+    <li><a href="#exercise">Exercise</a></li>
+    <li><a href="#further-reading-1">Further reading</a></li>
+    </ul></li>
+    <li><a href="#qunit">QUnit</a><ul>
+    <li><a href="#introduction-3">Introduction</a></li>
+    <li><a href="#getting-setup">Getting Setup</a></li>
+    <li><a href="#assertions">Assertions</a></li>
+    <li><a href="#adding-structure-to-assertions">Adding structure to assertions</a></li>
+    <li><a href="#assertion-examples">Assertion examples</a><ul>
+    <li><a href="#equal---a-comparison-assertion.-it-passes-if-actual-expected">equal - a comparison assertion. It passes if actual == expected</a></li>
+    <li><a href="#notequal---a-comparison-assertion.-it-passes-if-actual-expected">notEqual - a comparison assertion. It passes if actual != expected</a></li>
+    <li><a href="#strictequal---a-comparison-assertion.-it-passes-if-actual-expected">strictEqual - a comparison assertion. It passes if actual === expected</a></li>
+    <li><a href="#notstrictequal---a-comparison-assertion.-it-passes-if-actual-expected">notStrictEqual - a comparison assertion. It passes if actual !== expected</a></li>
+    <li><a href="#deepequal---a-recursive-comparison-assertion.-unlike-strictequal-it-works-on-objects-arrays-and-primitives.">deepEqual - a recursive comparison assertion. Unlike strictEqual(), it works on objects, arrays and primitives.</a></li>
+    <li><a href="#notdeepequal---a-comparison-assertion.-this-returns-the-opposite-of-deepequal">notDeepEqual - a comparison assertion. This returns the opposite of deepEqual</a></li>
+    <li><a href="#raises---an-assertion-which-tests-if-a-callback-throws-any-exceptions">raises - an assertion which tests if a callback throws any exceptions</a></li>
+    </ul></li>
+    <li><a href="#fixtures">Fixtures</a><ul>
+    <li><a href="#fixtures-example">Fixtures example:</a></li>
+    </ul></li>
+    <li><a href="#asynchronous-code">Asynchronous code</a></li>
+    </ul></li>
+    <li><a href="#sinonjs">SinonJS</a><ul>
+    <li><a href="#what-is-sinonjs">What is SinonJS?</a></li>
+    <li><a href="#stubs-and-mocks">Stubs and mocks</a><ul>
+    <li><a href="#stubs">Stubs</a></li>
+    <li><a href="#mocks">Mocks</a></li>
+    </ul></li>
+    <li><a href="#exercise-1">Exercise</a><ul>
+    <li><a href="#models-3">Models</a></li>
+    <li><a href="#collections-2">Collections</a></li>
+    <li><a href="#views-3">Views</a></li>
+    <li><a href="#app">App</a></li>
+    </ul></li>
+    <li><a href="#further-reading-resources">Further Reading &amp; Resources</a></li>
+    </ul></li>
+    <li><a href="#resources">Resources</a><ul>
+    <li><a href="#books-courses">Books &amp; Courses</a></li>
+    <li><a href="#extensionslibraries">Extensions/Libraries</a></li>
+    </ul></li>
+    <li><a href="#conclusions-3">Conclusions</a></li>
+    <li><a href="#appendix">Appendix</a><ul>
+    <li><a href="#a-simple-javascript-mvc-implementation">A Simple JavaScript MVC Implementation</a><ul>
+    <li><a href="#event-system">Event System</a></li>
+    <li><a href="#models-4">Models</a></li>
+    <li><a href="#views-4">Views</a></li>
+    <li><a href="#controllers-2">Controllers</a></li>
+    <li><a href="#practical-usage">Practical Usage</a></li>
+    </ul></li>
+    <li><a href="#mvp">MVP</a><ul>
+    <li><a href="#models-views-presenters">Models, Views &amp; Presenters</a></li>
+    </ul></li>
+    <li><a href="#mvp-or-mvc">MVP or MVC?</a></li>
+    <li><a href="#mvc-mvp-and-backbone.js">MVC, MVP and Backbone.js</a></li>
+    <li><a href="#namespacing">Namespacing</a></li>
+    <li><a href="#backbone-dependency-details">Backbone Dependency Details</a><ul>
+    <li><a href="#dom-manipulation">DOM Manipulation</a></li>
+    <li><a href="#utilities">Utilities</a></li>
+    <li><a href="#restful-persistence-1">RESTful persistence</a></li>
+    <li><a href="#routing">Routing</a></li>
+    </ul></li>
+    <li><a href="#backbone-vs.-other-libraries-and-frameworks">Backbone Vs. Other Libraries And Frameworks</a></li>
+    </ul></li>
+    </ul>
 </nav>
+</div>
+<div class="col2">
+
 <h2 id="prelude">Prelude</h2>
 <figure>
 <img src="img/logo.jpg" />
@@ -9463,18 +9456,38 @@ Backbone.sync = function(method, model, options) {
 <p>Is there an active community of project contributors and users who would be able to assist if you run into issues? Have enough developers been using the framework that there are existing reference applications, tutorials and maybe even screencasts that you can use to learn more about it?</p>
 <hr />
 <p>Where relevant, copyright Addy Osmani, 2012-2013.</p>
-<script type="text/javascript">
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-34317097-1']);
-  _gaq.push(['_trackPageview']);
+</div><!-- col2 -->
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+<script>
+(function affixer_fuc(window, elem_selector) {
+    var ticking = false,
+        last_scroll_pos = 0,
+        elem = document.querySelector(elem_selector);
+
+    function affix(top_offset) {
+        elem.style.top = top_offset + 'px';
+    }
+
+    function update_on_scroll() {
+        last_scroll_pos = window.scrollY;
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                affix(last_scroll_pos);
+                ticking = false;
+            });
+        }
+        ticking = true;
+    }
+
+    window.document.addEventListener("DOMContentLoaded", function(event) {
+        /* Set event listeners once the document has loaded */
+        window.addEventListener('scroll', update_on_scroll);
+    });
+
+})(window, '.col1');
 
 </script>
+
 </body>
 </html>

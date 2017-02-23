@@ -14,7 +14,8 @@ body {
     font-size: 18px;
     line-height: 1.4;
     color: #000000;
-    margin: 10px 13px 10px 13px;
+    /*margin: 10px 13px 10px 13px;*/
+    width: 100%;
 }
 a {
     color: #0069d6;
@@ -128,7 +129,32 @@ ul li ul a{
 
 @media screen and (min-width: 768px) {
     body {
-        width: 748px;
-        margin:40px auto;
+        /*width: 748px;*/
+        /*margin:40px auto;*/
     }
+}
+
+.col1 {
+    height: 100%;
+    float: left;
+    width: 240px;
+    position: absolute;
+}
+
+#TOC {
+    font-size: 50%;
+    overflow-y: scroll;
+    height: 100%;
+}
+
+#TOC ul {
+    padding-left: 25px;
+}
+
+header,
+.col2 {
+    float: left; 
+    padding-left: 260px;
+    width: calc(100% - 240px);
+    max-width: 40em;
 }
