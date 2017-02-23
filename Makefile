@@ -52,3 +52,7 @@ mobi: epub
 	# Download: http://www.amazon.com/gp/feature.html?ie=UTF8&docId=1000765211
 	# Symlink bin: ln -s /path/to/kindlegen /usr/local/bin
 	kindlegen $(filename).epub
+
+serve:
+	python -m SimpleHTTPServer 8000
+
